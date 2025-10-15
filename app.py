@@ -1,9 +1,3 @@
-app.py
-```python
-import streamlit as st
-import pandas as pd
-from PIL import Image
-
 st.set_page_config(page_title="My Family Tree", layout="centered")
 st.title("👨‍👩‍👧‍👦 My Family Tree App")
 
