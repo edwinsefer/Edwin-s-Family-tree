@@ -41,7 +41,8 @@ for i, member in enumerate(st.session_state.members):
         st.write(f"📞 Phone: {member['Phone']}")
         st.write(f"🏠 Address: {member['Address']}")
         if member["Image"]:
-            img = Image.open(member["Image"])
+            img = image.open(member["Image"])
             st.image(img, width=150)
+
 
 
