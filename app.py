@@ -1,7 +1,7 @@
 st.set_page_config(page_title="My Family Tree", layout="centered")
 st.title("👨‍👩‍👧‍👦 My Family Tree App")
 
-Load existing data
+
 if "members" not in st.session_state:
     st.session_state.members = []
 
@@ -39,3 +39,4 @@ for i, member in enumerate(st.session_state.members):
         if member["Image"]:
             img = Image.open(member["Image"])
             st.image(img, width=150)
+
