@@ -1,4 +1,4 @@
-
+python
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -29,8 +29,8 @@ if choice == "Add Member":
             doc_ref = db.collection("family").document(name)
             doc_ref.set({
                 "name": name,
-                "dob": dob.strftime("%Y-%m-%d"),
-"phone": phone,
+"dob": dob.strftime("%Y-%m-%d"),
+                "phone": phone,
                 "address": address,
                 "spouse": spouse,
                 "children": [c.strip() for c in children.split(",") if c.strip()],
@@ -49,4 +49,3 @@ elif choice == "View Family Tree":
         st.write(f"❤️ Spouse: {data['spouse']}")
         st.write(f"👶 Children: {', '.join(data['children'])}")
         st.markdown("---")
-
