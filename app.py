@@ -1,49 +1,25 @@
+```python
 import streamlit as st
-import pandas as pd
-import numpy as np
+import firebase_admin
+from firebase_admin import credentials, firestore
+import datetime
 
-st.set_page_config(page_title="My Family Tree", layout="centered")
-st.title("👨‍👩‍👧‍👦 My Family Tree App")
+Firebase init
+if not firebase_admin._apps:
+    cred = credentials.Certificate("serviceAccountKey.json")
+    firebase_admin.initialize_app(cred)
+db = firestore.client()
 
+st.title("Edwin Family Tree App")
 
-if "members" not in st.session_state:
-    st.session_state.members = []
+menu = ["Add Member", "View Family Tree"]
+choice = st.sidebar.selectbox("Menu", menu)
 
-st.subheader("➕ Add New Family Member")
-with st.form("member_form", clear_on_submit=True):
-    name = st.text_input("Full Name")
-    dob = st.date_input("Date of Birth")
-    anniversary = st.date_input("Wedding Anniversary (optional)", value=None)
-    phone = st.text_input("Mobile Number")
-    address = st.text_area("Address")
-    image = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
-
-    submitted = st.form_submit_button("Add Member")
-    if submitted:
-        member_data = {
-            "Name": name,
-            "DOB": dob,
-            "Anniversary": anniversary,
-            "Phone": phone,
-            "Address": address,
-            "Image": image
-        }
-        st.session_state.members.append(member_data)
-
-st.success(f"{name} added successfully!")
-
-st.subheader("📋 Family Members List")
-
-for i, member in enumerate(st.session_state.members):
-    with st.expander(f"{i+1}. {member['Name']}"):
-        st.write(f"📅 DOB: {member['DOB']}")
-        st.write(f"💍 Anniversary: {member['Anniversary']}")
-        st.write(f"📞 Phone: {member['Phone']}")
-        st.write(f"🏠 Address: {member['Address']}")
-        if member["Image"]:
-            img = Image.open(member["Image"])
-            st.image(img, width=150)
-
-
-
-
+if choice == "Add Member":
+    with st.form("entry_form"):
+        name = st.text_input("Name")
+        dob = st.date_input("Date of Birth")
+        phone = st.text_input("Mobile Number")
+        address = st.text_area("Address")
+        spouse = st.text_input("Spouse Name")
+        children = st.text_area("Children (comma separated)")
