@@ -3,7 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import datetime
 
-Firebase init
+firebase init
 if not firebase_admin._apps:
     cred = credentials.Certificate("serviceAccountKey.json")
     firebase_admin.initialize_app(cred)
@@ -49,3 +49,4 @@ elif choice == "View Family Tree":
         st.write(f"👶 Children: {', '.join(data['children'])}")
 
         st.markdown("---")
+
