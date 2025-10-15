@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -48,4 +47,5 @@ elif choice == "View Family Tree":
         st.write(f"🏠 Address: {data['address']}")
         st.write(f"❤️ Spouse: {data['spouse']}")
         st.write(f"👶 Children: {', '.join(data['children'])}")
+
         st.markdown("---")
