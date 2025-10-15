@@ -1,4 +1,4 @@
-```python
+
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -22,4 +22,5 @@ if choice == "Add Member":
         phone = st.text_input("Mobile Number")
         address = st.text_area("Address")
         spouse = st.text_input("Spouse Name")
+
         children = st.text_area("Children (comma separated)")
