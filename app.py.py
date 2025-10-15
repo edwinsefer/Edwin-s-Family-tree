@@ -1,4 +1,3 @@
-python
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -9,12 +8,10 @@ if not firebase_admin._apps:
     cred = credentials.Certificate("serviceAccountKey.json")
     firebase_admin.initialize_app(cred)
 db = firestore.client()
-
 st.title("Edwin Family Tree App")
 
 menu = ["Add Member", "View Family Tree"]
 choice = st.sidebar.selectbox("Menu", menu)
-
 if choice == "Add Member":
     with st.form("entry_form"):
         name = st.text_input("Name")
@@ -24,7 +21,6 @@ if choice == "Add Member":
         spouse = st.text_input("Spouse Name")
         children = st.text_area("Children (comma separated)")
         submitted = st.form_submit_button("Add Member")
-
         if submitted:
             doc_ref = db.collection("family").document(name)
             doc_ref.set({
@@ -48,4 +44,5 @@ elif choice == "View Family Tree":
         st.write(f"🏠 Address: {data['address']}")
         st.write(f"❤️ Spouse: {data['spouse']}")
         st.write(f"👶 Children: {', '.join(data['children'])}")
+
         st.markdown("---")
