@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7b1e2b">
+<title>Thiruvudaiyan Family</title>
+<style>
+:root{--maroon:#7b1e2b;--gold:#c9a227;--cream:#fffaf0;--ink:#2b2118;--card:#fff;--muted:#756b62}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(135deg,var(--maroon),#4f101a);color:#fff;padding:22px 18px 18px;text-align:center;position:sticky;top:0;z-index:5}
+.logo{width:74px;height:74px;margin:auto auto 8px;border:3px solid var(--gold);border-radius:50%;display:grid;place-items:center;background:#fffaf0;color:var(--maroon);font-size:32px}
+h1{font-size:21px;margin:4px 0}.subtitle{font-size:12px;opacity:.9;letter-spacing:1px}
+main{max-width:720px;margin:auto;padding:16px 14px 92px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:var(--card);border:1px solid #eadfce;border-radius:16px;padding:17px;box-shadow:0 2px 9px #0000000d}
+.card button{width:100%;border:0;background:none;text-align:left;padding:0;color:inherit;font:inherit}.icon{font-size:26px}.title{font-weight:700;margin-top:8px}.desc{font-size:12px;color:var(--muted);margin-top:4px}
+section{display:none}.active{display:block}.back{border:0;background:none;color:var(--maroon);font-weight:700;padding:4px 0 14px;font-size:15px}
+.list{display:grid;gap:9px}.row{background:#fff;border-radius:12px;padding:13px;border:1px solid #eadfce}
+input,textarea,select{width:100%;padding:11px;border:1px solid #d9cdbd;border-radius:10px;margin:6px 0 10px;font:inherit}
+.primary{background:var(--maroon);color:#fff;border:0;border-radius:10px;padding:11px 16px;font-weight:700}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e6dac9;display:flex;justify-content:space-around;padding:8px 5px;z-index:10}
+nav button{border:0;background:none;color:var(--muted);font-size:11px}.count{font-size:30px;font-weight:800;color:var(--maroon)}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="logo">ॐ</div><h1>THIRUVUDAIYAN FAMILY</h1><div class="subtitle">SANKARAN KOVIL · FAMILY APP</div></header>
+<main>
+<section id="home" class="active"><h2>Family Home</h2><div class="grid">
+<div class="card"><button onclick="show('tree')"><div class="icon">🌳</div><div class="title">Family Tree</div><div class="desc">Explore family members and relationships.</div></button></div>
+<div class="card"><button onclick="show('members')"><div class="icon">👨‍👩‍👧‍👦</div><div class="title">Members</div><div class="desc">Add and view family members.</div></button></div>
+<div class="card"><button onclick="show('celebrations')"><div class="icon">🎉</div><div class="title">Celebrations</div><div class="desc">Birthdays and anniversaries.</div></button></div>
+<div class="card"><button onclick="show('timeline')"><div class="icon">🕰️</div><div class="title">Timeline</div><div class="desc">Important family moments.</div></button></div>
+<div class="card"><button onclick="show('stories')"><div class="icon">📖</div><div class="title">Stories</div><div class="desc">Preserve family memories.</div></button></div>
+<div class="card"><button onclick="show('gallery')"><div class="icon">🖼️</div><div class="title">Portrait Gallery</div><div class="desc">Family photos and portraits.</div></button></div>
+<div class="card"><button onclick="show('functions')"><div class="icon">🏠</div><div class="title">Family Functions</div><div class="desc">Functions and gatherings.</div></button></div>
+<div class="card"><button onclick="show('finder')"><div class="icon">🔎</div><div class="title">Relationship Finder</div><div class="desc">Find how two members are related.</div></button></div>
+</div></section>
+<section id="tree"><button class="back" onclick="show('home')">← Home</button><h2>Family Tree</h2><div class="row">Family tree workspace ready. Member relationships can be connected as the family data is added.</div></section>
+<section id="members"><button class="back" onclick="show('home')">← Home</button><h2>Members</h2><form onsubmit="addMember(event)"><input id="memberName" placeholder="Member name" required><input id="memberRelation" placeholder="Relationship"><button class="primary">Add Member</button></form><div id="memberList" class="list"></div></section>
+<section id="celebrations"><button class="back" onclick="show('home')">← Home</button><h2>Celebrations</h2><div class="row">Birthday and anniversary records can be added here.</div></section>
+<section id="timeline"><button class="back" onclick="show('home')">← Home</button><h2>Family Timeline</h2><div class="row">Record important family events and milestones.</div></section>
+<section id="stories"><button class="back" onclick="show('home')">← Home</button><h2>Family Stories</h2><textarea id="story" rows="7" placeholder="Write a family story..."></textarea><button class="primary" onclick="saveStory()">Save Story</button><div id="storyList" class="list" style="margin-top:12px"></div></section>
+<section id="gallery"><button class="back" onclick="show('home')">← Home</button><h2>Portrait Gallery</h2><input type="file" accept="image/*" multiple><div class="row">Photos selected on the device can be used for the gallery when persistent storage is added.</div></section>
+<section id="functions"><button class="back" onclick="show('home')">← Home</button><h2>Family Functions</h2><div class="row">Manage weddings, reunions, temple visits and other family gatherings.</div></section>
+<section id="finder"><button class="back" onclick="show('home')">← Home</button><h2>Relationship Finder</h2><div class="row">Relationship intelligence will use the family tree data to explain connections.</div></section>
+</main>
+<nav><button onclick="show('home')">⌂<br>Home</button><button onclick="show('members')">👥<br>Members</button><button onclick="show('celebrations')">🎉<br>Events</button><button onclick="show('stories')">📖<br>Stories</button></nav>
+<script>
+const key='snkl-family-members', storyKey='snkl-family-stories';
+function show(id){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='members')renderMembers();if(id==='stories')renderStories();scrollTo(0,0)}
+function get(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}
+function put(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function addMember(e){e.preventDefault();const a=get(key);a.push({name:memberName.value.trim(),relation:memberRelation.value.trim()});put(key,a);e.target.reset();renderMembers()}
+function renderMembers(){const a=get(key);memberList.innerHTML=a.length?a.map((m,i)=>'<div class="row"><b>'+esc(m.name)+'</b><br><small>'+esc(m.relation||'Family member')+'</small></div>').join(''):'<div class="row">No members added yet.</div>'}
+function saveStory(){if(!story.value.trim())return;const a=get(storyKey);a.push({text:story.value.trim(),date:new Date().toLocaleDateString()});put(storyKey,a);story.value='';renderStories()}
+function renderStories(){const a=get(storyKey);storyList.innerHTML=a.length?a.map(x=>'<div class="row">'+esc(x.text)+'<br><small>'+x.date+'</small></div>').join(''):'<div class="row">No stories saved yet.</div>'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+</script>
+</body></html>
