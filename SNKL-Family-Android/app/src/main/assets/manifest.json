@@ -1,0 +1,9 @@
+{
+  "name": "Thiruvudaiyan Family - Sankarankovil",
+  "short_name": "Thiruvudaiyan",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#4a121a",
+  "theme_color": "#721c24",
+  "orientation": "portrait"
+}
